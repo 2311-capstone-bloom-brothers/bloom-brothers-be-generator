@@ -34,8 +34,8 @@ module PlantGenerator
     bloom_color = generate_bloom_color
 
     plant = {
-      name: name,
-      description: description,
+      name: name || '',
+      description: description || '',
       plant_type: plant_type,
       lifespan: 86400000,
       planted: Time.now.to_i,
