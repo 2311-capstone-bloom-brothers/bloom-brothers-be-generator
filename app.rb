@@ -2,8 +2,6 @@ require 'sinatra'
 require 'json'
 require_relative 'services/plant_generator'
 
-set :port, 3001 
-
 before do
   if request.content_type == 'application/json'
     request.body.rewind
