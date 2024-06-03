@@ -6,7 +6,6 @@ set :port, ENV['PORT'] || 4567
 
 before do
   if request.content_type == 'application/json'
-    request.body.rewind
     @request_payload = JSON.parse(request.body.read) rescue {}
   end
 end
