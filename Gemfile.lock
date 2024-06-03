@@ -42,7 +42,6 @@ PLATFORMS
 
 DEPENDENCIES
   json
-  rack
   rack-test
   rspec
   sinatra
