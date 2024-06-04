@@ -5,7 +5,8 @@ RSpec.describe 'Plant Generator API' do
     post '/generate_plant', {
       name: 'Rose',
       description: 'A beautiful rose',
-      plant_type: 'flower1'
+      plant_type: 'flower1',
+      position: 'a1'
     }.to_json, { 'CONTENT_TYPE' => 'application/json' }
 
     expect(last_response).to be_ok
@@ -18,6 +19,24 @@ RSpec.describe 'Plant Generator API' do
     expect(response['phases']).to have_key('bloom')
   end
 
+  it 'generates the second variety of plant with given parameters' do
+    post '/generate_plant', {
+      name: 'Rose',
+      description: 'A beautiful rose',
+      plant_type: 'flower2',
+      position: 'a1'
+    }.to_json, { 'CONTENT_TYPE' => 'application/json' }
+
+    expect(last_response).to be_ok
+    response = JSON.parse(last_response.body)
+
+    expect(response['name']).to eq('Rose')
+    expect(response['description']).to eq('A beautiful rose')
+    expect(response['plant_type']).to eq('flower2')
+    expect(response['phases']).to have_key('stem')
+    expect(response['phases']).to have_key('bloom')
+  end
+
   it 'generates a plant with default parameters if none are given' do
     post '/generate_plant', {}.to_json, { 'CONTENT_TYPE' => 'application/json' }
 
@@ -26,6 +45,7 @@ RSpec.describe 'Plant Generator API' do
 
     expect(response['name']).to eq('')
     expect(response['description']).to eq('')
+    expect(response['position']).to eq('')
     expect(response['plant_type']).not_to be_nil
     expect(response['phases']).to have_key('stem')
     expect(response['phases']).to have_key('bloom')
