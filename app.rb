@@ -17,8 +17,9 @@ post '/generate_plant' do
     name = @request_payload['name']
     description = @request_payload['description']
     plant_type = @request_payload['plant_type']
+    position = @request_payload['position']
 
-    plant = PlantGenerator.create(name: name, description: description, plant_type: plant_type)
+    plant = PlantGenerator.create(name: name, description: description, plant_type: plant_type, position: position)
     plant.to_json
   rescue => e
     status 500
