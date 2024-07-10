@@ -91,7 +91,7 @@ module PlantGenerator
         radialSegments: generate_random_values(attributes[:radialSegments]),
         rotation: attributes[:rotation]
       }
-    else
+    elsif plant_type == :flower2
       plant[:phases][:bloom] = {
         qc1: generate_random_values(attributes[:qc1]),
         qc2: generate_random_values(attributes[:qc2]),
@@ -110,6 +110,42 @@ module PlantGenerator
         scaleY: generate_random_values(attributes[:scaleY]),
         scaleZ: generate_random_values(attributes[:scaleZ])
       }
+    else
+      if [:flower1, :flower2].sample == :flower1
+        plant[:phases][:bloom] = {
+          color: [bloom_color, bloom_color, bloom_color, bloom_color, bloom_color],
+          petalCount: attributes[:petalCount],
+          recRadius: generate_random_values(attributes[:recRadius]),
+          radiusTop: generate_random_values(attributes[:radiusTop]),
+          radiusBottom: generate_random_values(attributes[:radiusBottom]),
+          noiseScale: generate_random_values(attributes[:noiseScale]),
+          noiseImpactX: generate_random_values(attributes[:noiseImpactX]),
+          noiseImpactY: generate_random_values(attributes[:noiseImpactY]),
+          noiseImpactZ: generate_random_values(attributes[:noiseImpactZ]),
+          height: generate_random_values(attributes[:height]),
+          radialSegments: generate_random_values(attributes[:radialSegments]),
+          rotation: attributes[:rotation]
+        }
+      else
+        plant[:phases][:bloom] = {
+          qc1: generate_random_values(attributes[:qc1]),
+          qc2: generate_random_values(attributes[:qc2]),
+          qc3: generate_random_values(attributes[:qc3]),
+          qc4: generate_random_values(attributes[:qc4]),
+          noiseScale: generate_random_values(attributes[:noiseScale]),
+          noiseImpactX: generate_random_values(attributes[:noiseImpactX]),
+          noiseImpactY: generate_random_values(attributes[:noiseImpactY]),
+          noiseImpactZ: generate_random_values(attributes[:noiseImpactZ]),
+          rotIncX: generate_random_values(attributes[:rotIncX]),
+          rotIncY: generate_random_values(attributes[:rotIncY]),
+          rotIncZ: generate_random_values(attributes[:rotIncZ]),
+          depth: generate_random_values(attributes[:depth]),
+          numLeaves: generate_random_values(attributes[:numLeaves]),
+          scaleX: generate_random_values(attributes[:scaleX]),
+          scaleY: generate_random_values(attributes[:scaleY]),
+          scaleZ: generate_random_values(attributes[:scaleZ])
+        }
+      end
     end
 
     plant
